@@ -52,8 +52,7 @@ console.log("[1,1]", network.activate([1,1]));
 
 cursor("down", {count: 13});
 
-let trainig_step = 5000;
-let goal = 0;
+let trainig_step = 0;
 let interval = setInterval(() => {
 
   let out1, out2, out3, out4;
@@ -87,11 +86,6 @@ let interval = setInterval(() => {
     parseFloat(out2).toFixed(2) === '1.00' &&
     parseFloat(out3).toFixed(2) === '1.00' &&
     parseFloat(out4).toFixed(2) === '0.00') {
-    goal++;
-  }
-
-  // after finish the training set
-  if (!trainig_step) {
 
     clearInterval(interval);
     console.log('\n');
@@ -101,11 +95,11 @@ let interval = setInterval(() => {
     console.log(network.activate([1,0]));
     console.log(network.activate([1,1]));
     console.log('\n');
-    console.log('Objective achieved with ', goal, ' steps to the end');
+    console.log('Objective achieved with ', trainig_step);
     console.log('\n');
 
   }
 
-  trainig_step--;
+  trainig_step++;
 
-}, 5);
+}, 100);
